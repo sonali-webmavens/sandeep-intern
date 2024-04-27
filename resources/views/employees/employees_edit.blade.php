@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('main')
 
 @section('content')
 
@@ -62,5 +62,4 @@
 
             <button type="submit" class="btn btn-warning">Update</button>
     </form>
-    </div>
 @endsection

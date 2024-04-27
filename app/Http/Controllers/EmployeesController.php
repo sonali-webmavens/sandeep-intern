@@ -15,7 +15,7 @@ class EmployeesController extends Controller
     public function index()
     {
         $title = 'Employees All Data';
-        $employees = Employees::paginate(10); // Paginate the results directly
+        $employees = Employees::all(); // Paginate the results directly
         // $employees->paginate(5);
 
 
