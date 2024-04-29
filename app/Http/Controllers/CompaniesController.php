@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Companies;
 use App\Http\Requests\StoreCompaniesRequest;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\WelcomeNotification;
+
 class CompaniesController extends Controller
 {
     /**
@@ -29,8 +32,6 @@ class CompaniesController extends Controller
      */
     public function store(StoreCompaniesRequest $request)
     {
-
-
         $title = 'Companies All Data';
         if ($request->hasFile('logo')) {
             $path = $request->file('logo')->store('logo', 'public');
@@ -43,6 +44,7 @@ class CompaniesController extends Controller
             'website'=> $request->website,
             'logo'=> $path,
         ]);
+        Notification::send($companies, new WelcomeNotification($companies)); // Fixed
         return redirect()->route('companies.index');
     }
 
@@ -91,6 +93,5 @@ class CompaniesController extends Controller
         $companies = Companies::find($id);
         $companies->delete();
         return back();
-
     }
 }

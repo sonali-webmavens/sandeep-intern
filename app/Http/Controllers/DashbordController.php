@@ -5,19 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Employees;
 use App\Models\Companies;
+use Illuminate\Support\Facades\App;
+
 class DashbordController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    // public function index($lang)
+    // {
+    //     App::setLocale($lang);
     public function index()
     {
-        $title = "Dashbord";
+
+        $title = __('dashboard.title');
         $companies = Companies::all();
         $employees = Employees::all();
-        return view("dashbord.dashbord_index" , compact("title" , "companies" ,"employees"));
-    }
 
+        return view("dashbord.dashbord_index", compact("title", "companies", "employees"));
+    }
     /**
      * Show the form for creating a new resource.
      */
