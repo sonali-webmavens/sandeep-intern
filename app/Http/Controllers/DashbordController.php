@@ -15,10 +15,17 @@ class DashbordController extends Controller
     // public function index($lang)
     // {
     //     App::setLocale($lang);
-    public function index()
+    public function index($lang = null)
     {
+        if ($lang && array_key_exists($lang, config('app.available_locales'))) {
+            App::setLocale($lang);
+        }
+
+        // Your controller logic for the dashboard index
 
         $title = __('dashboard.title');
+        // echo $title;
+        // die;
         $companies = Companies::all();
         $employees = Employees::all();
 

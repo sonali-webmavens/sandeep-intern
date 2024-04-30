@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('main')
 
 @section('content')
     <form action="{{ route('companies.update' , $companies->id) }}" method="post" enctype="multipart/form-data">

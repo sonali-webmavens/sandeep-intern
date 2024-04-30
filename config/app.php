@@ -78,11 +78,10 @@ return [
     |
     */
 
-    'locale' => 'en', // Set your default locale here
+    'locale' => 'hi', // Set your default locale here
+    'available_locales' => ['en', 'hi', 'gu'],
 
-    // Supported locales
-    'locales' => ['en', 'hi', 'gu'],
-    // 'locale' => env('APP_LOCALE', 'en'),
+
 
     'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
 

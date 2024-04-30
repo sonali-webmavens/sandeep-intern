@@ -1,21 +1,17 @@
-@extends('welcome')
+@extends('main')
 
 @section('content')
-<div class="container px-4 px-lg-5 mt-5">
-    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
     <div class="d-flex justify-content-end">
         <a href="{{ route('companies.create') }}">
             <button class="btn btn-primary">Add Companies</button>
         </a>
     </div>
-    <table class="table mt-5">
+    <table class="table mt-5" id="myTable">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Logo</th>
-                <th scope="col">Name</th>  <div>
-                    Showing {{ $companies->firstItem() }} to {{ $companies->lastItem() }} of {{ $companies->total() }} entries
-                </div>
+                <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Website</th>
                 <th scope="col">Action</th>
@@ -57,10 +53,7 @@
     </table>
     <div class="d-flex justify-content-between mt-5">
 
-        <div class="d-flex justify-content-end">
-            {{ $companies->links() }}
-        </div>
+
     </div>
-</div>
-</div>
+
 @endsection

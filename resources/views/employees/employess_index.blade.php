@@ -1,22 +1,21 @@
-@extends('welcome')
+@extends('main')
 
 @section('content')
-    <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
             <div class="d-flex justify-content-end">
                 <a href="{{ route('employees.create') }}">
                     <button class="btn btn-primary">Add employees</button>
                 </a>
             </div>
 
-            <table class="table mt-5">
+            <table class="table mt-5" id="myTable">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">First Name</th>
-                        <div>
+                        {{-- <div>
                             Showing {{ $employees->firstItem() }} to {{ $employees->lastItem() }} of {{ $employees->total() }} entries
-                        </div>
+                        </div> --}}
                         <th scope="col">Last Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Phone Number</th>
@@ -27,7 +26,7 @@
                 <tbody>
                     @foreach ($employees as $index => $value)
                         <tr>
-                            <th scope="row">{{ $employees->firstItem() + $index }}</th>
+                            <th scope="row">{{  $index+1 }}</th>
                             <td>{{ $value->first_name }}</td>
                             <td>{{ $value->last_name }}</td>
                             <td>{{ $value->email ?: '--' }}</td>
@@ -50,10 +49,7 @@
 
             <div class="d-flex justify-content-between mt-5">
 
-                <div class="d-flex justify-content-end">
-                    {{ $employees->links() }}
-                </div>
+
             </div>
-        </div>
-    </div>
+
 @endsection
