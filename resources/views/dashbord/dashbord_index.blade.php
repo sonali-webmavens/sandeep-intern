@@ -21,7 +21,7 @@
         <div class="col-md-12 mb-4 stretch-card transparent">
           <div class="card card-tale">
             <div class="card-body">
-              <p class="mb-4">Total Companies</p>
+              <p class="mb-4">{{ __('dashbord.Total_Companies') }}</p>
               <p class="fs-30 mb-2">{{ $companies_count ?? '' }} </p>
               {{-- <p>10.00% (30 days)</p> --}}
             </div>
@@ -30,7 +30,7 @@
         <div class="col-md-12 mb-4 stretch-card transparent">
           <div class="card card-dark-blue">
             <div class="card-body">
-              <p class="mb-4">Total Employees</p>
+              <p class="mb-4">{{ __('dashbord.Total Employees') }}</p>
               <p class="fs-30 mb-2">{{ $employees_count ?? '' }}</p>
               {{-- <p>22.00% (30 days)</p> --}}
             </div>

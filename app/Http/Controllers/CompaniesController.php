@@ -13,9 +13,9 @@ class CompaniesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request , $locale)
     {
-        $title = 'Companies All Data';
+        $title = "companies all data";
         $companies = Companies::all();
 
         return view('companies.companies_index' , compact('companies' ,'title'));
@@ -23,7 +23,7 @@ class CompaniesController extends Controller
 
     public function create()
     {
-        $title = 'Companies Create Form ';
+        $title = __('companies.Companies Create Form');
         return view('companies.companies_create' , compact('title'));
     }
 

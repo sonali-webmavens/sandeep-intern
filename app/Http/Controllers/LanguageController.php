@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 class LanguageController extends Controller
 {
     public function change(Request $request){
-
-        $request->session()->put('lang', $request->lang);
-        return redirect()->back();
+        return redirect()->route("companies.index");
     }
 }

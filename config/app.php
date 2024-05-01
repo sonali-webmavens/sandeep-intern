@@ -78,8 +78,8 @@ return [
     |
     */
 
-    'locale' => 'hi', // Set your default locale here
-    'available_locales' => ['en', 'hi', 'gu'],
+    'locale' => 'en', // Set your default locale here
+    'available_locales' => ['en', 'gu' ,'hi'],
 
 
 

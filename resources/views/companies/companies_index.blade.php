@@ -19,6 +19,7 @@
         </thead>
         <tbody>
             @php
+            // dd($companies);
             @endphp
             @foreach ($companies as $index => $company)
                 <tr>
@@ -34,7 +35,7 @@
                     <td>{{ $company->email != '' ? $company->email : '--' }}</td>
                     <td>{{ $company->website != '' ? $company->website : '--' }}</td>
                     <td>
-                        <a href="{{ route('companies.edit', $company->id) }}">
+                        <a href="{{ route('companies.edit',['company_id'=> $company->id] ) }}">
                             <button class="btn btn-info">Edit</button>
                         </a>
                         <form action="{{ route('companies.destroy', $company->id) }}" method="POST"
