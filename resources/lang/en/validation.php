@@ -12,6 +12,9 @@ return [
     | as the size rules. Feel free to tweak each of these messages here.
     |
     */
+    'attribute' => array(
+        'name' => ' nameeeee ',
+    ),
 
     'accepted' => 'The :attribute field must be accepted.',
     'accepted_if' => 'The :attribute field must be accepted when :other is :value.',

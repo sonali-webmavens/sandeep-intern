@@ -2,12 +2,10 @@
 use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\DashbordController;
-use App\Http\Controllers\LanguageController;
 
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
-Route::get("{locale?}/companies", [LanguageController::class,"change"]);
 Route::group(['middleware' => ['auth'], 'prefix' => '{locale?}'], function () {
     Route::resource('/companies', CompaniesController::class);
 

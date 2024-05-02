@@ -147,7 +147,7 @@
                     </li>
                     @php
                         $language = Config::get('app.locale');
-
+                        // dd($language);
                     @endphp
                     {{-- language  start  --}}
                     <li class="nav-item dropdown">
@@ -164,15 +164,12 @@
 
                                     <div class="media">
                                         @if ($locale == 'en')
-
                                             <img src="{{ asset('dist/img/english.png') }}" alt="English"
                                                 class="img-size-50 mr-3 img-circle">
                                         @elseif ($locale == 'hi')
-
                                             <img src="{{ asset('dist/img/hindi.png') }}" alt="Hindi"
                                                 class="img-size-50 mr-3 img-circle">
                                         @elseif ($locale == 'gu')
-
                                             <img src="{{ asset('dist/img/gujrati.png') }}" alt="Gujarati"
                                                 class="img-size-50 mr-3 img-circle">
                                         @endif
@@ -294,7 +291,7 @@
 
                             </li>
 
-                            <li class="nav-item menu-open">
+                            <li class="nav-item menu">
                                 <a href="#" class="nav-link ">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
@@ -304,7 +301,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                          <a href="{{ route('companies.create', ['locale' => $language]) }}"
+                                        <a href="{{ isset($language) ? route('companies.create', ['locale' => $language ]) : route('companies.create' ,['locale' =>  'en' ]) }}"
                                             class="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p> {{ __('dashbord.Add Companies') }}
@@ -312,17 +309,16 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('companies.index', ['locale' => $language]) }}"
-                                            class="nav-link">
+                                        <a href="{{ isset($language) ? route('companies.index', ['locale' => $language ]) : route('companies.index' ,['locale' =>  'en' ]) }}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p> {{ __('dashbord.Companies data') }}
-                                            </p>
+                                            <p>{{ __('dashbord.Companies data') }}</p>
                                         </a>
                                     </li>
 
+
                                 </ul>
                             </li>
-                            <li class="nav-item menu-open">
+                            <li class="nav-item menu">
                                 <a href="#" class="nav-link ">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
@@ -334,13 +330,15 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="{{ route('employees.create') }}" class="nav-link active">
+                                        <a href="{{ isset($language) ? route('employees.create', ['locale' => $language ]) : route('employees.create' ,['locale' =>  'en' ]) }}"
+                                            class="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p> {{ __('dashbord.Add Employees') }}</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('employees.index') }}" class="nav-link">
+                                        <a href="{{ isset($language) ? route('employees.index', ['locale' => $language ]) : route('employees.index' ,['locale' =>  'en' ]) }}"
+                                            class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p> {{ __('dashbord.Employees Data') }}</p>
                                         </a>
@@ -348,7 +346,7 @@
 
                                 </ul>
                             </li>
-                            <li class="nav-item menu-open">
+                            <li class="nav-item menu">
                                 <a href="#" class="nav-link ">
                                     <i class="nav-icon fas fa-user-alt"></i>
                                     <p>
