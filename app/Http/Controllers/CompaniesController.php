@@ -31,7 +31,7 @@ class CompaniesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCompaniesRequest $request , $locale)
+    public function store(StoreCompaniesRequest $request, $locale)
     {
         $title = __('companies. ');
         if ($request->hasFile('logo')) {
@@ -45,9 +45,17 @@ class CompaniesController extends Controller
             'website' => $request->website,
             'logo' => $path,
         ]);
-        Notification::send($companies, new WelcomeNotification($companies)); // Fixed
-        return redirect()->route('companies.index',app()->getLocale());
+        Notification::send($companies, new WelcomeNotification($companies));
+
+        // Check if the request expects JSON response
+        if ($request->expectsJson()) {
+            return response()->json($companies, 200);
+        } else {
+            // If not JSON, redirect
+            return redirect()->route('companies.index', app()->getLocale());
+        }
     }
+
 
     /**
      * Display the specified resource.

@@ -10,7 +10,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => '{locale?}'], function () {
     Route::resource('/companies', CompaniesController::class);
 
     Route::resource('/employees', EmployeesController::class);
-
     Route::get('/', [DashbordController::class, 'index'])->name('dashboard.index');
 
     Route::get('/create', [DashbordController::class, 'create'])->name('dashboard.create');

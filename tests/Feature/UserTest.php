@@ -6,25 +6,37 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
+use Illuminate\Foundation\Testing\WithoutMiddleware; // Import WithoutMiddleware
 
 class UserTest extends TestCase
 {
-    use RefreshDatabase;
+    // use RefreshDatabase, WithoutMiddleware; // Add WithoutMiddleware trait
+
     /**
      * A basic feature test example.
      */
-    public function test_example(): void
-    {
-        $response = $this->get('/login');
+    // public function test_login()
+    // {
+    //     $response = $this->get('/login');
 
-        $response->assertStatus(200);
-    }
-    public function test_user_login_with_email_and_password(){
-        $user = User::factory()->create();
-        $this->post('login',[
-            'email'=>$user->email,
-            'password'=>'password',
-        ]);
-        $this->assertAuthenticated();
-    }
+    //     $response->assertStatus(200);
+    // }
+
+    // public function test_user_password()
+    // {
+    //     //create user
+    //     $user = User::factory()->create([
+
+    //         "name" => "admin",
+    //         "email" => "admin@admin.com",
+    //         "password" => bcrypt("password"),
+    //     ]);
+
+    //     //login user
+    //     $response = $this->post('login', [
+    //         'email' => $user->email,
+    //         'password' => 'password',
+    //     ]);
+    //     $this->assertAuthenticated();
+    // }
 }

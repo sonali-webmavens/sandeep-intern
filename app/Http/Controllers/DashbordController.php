@@ -9,14 +9,7 @@ use Illuminate\Support\Facades\App;
 
 class DashbordController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    // public function index($lang)
-    // {
-    //     App::setLocale($lang);
 
-    //,$locale
     public function index()
     {
         $title = __('dashbord.title');
@@ -25,12 +18,9 @@ class DashbordController extends Controller
 
         return view("dashbord.dashbord_index", compact("title", "companies", "employees"));
     }
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
-        //
     }
 
     /**
