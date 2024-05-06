@@ -18,38 +18,40 @@
             </tr>
         </thead>
         <tbody>
-            @if ($companies->isEmpty())
-                <tr class="bg-white">
-                    <td >{{ __('not data found') }}</td>
-                </tr>
-            @else
-                @foreach ($companies as $index => $company)
-                    <tr>
-                        <th scope="row">{{ (int) $index + 1 }}</th>
-                        <td>
-                            @if ($company->logo)
-                                <img src="{{ asset('storage/' . $company->logo) }}" height="100px" width="100px" alt="Company Logo">
-                            @else
-                                No logo available
-                            @endif
-                        </td>
-                        <td>{{ $company->name }}</td>
-                        <td>{{ $company->email != '' ? $company->email : '--' }}</td>
-                        <td>{{ $company->website != '' ? $company->website : '--' }}</td>
-                        <td>
-                            <a href="{{ route('companies.edit', ['locale' => app()->getLocale(), 'company' => $company->id]) }}" class="btn btn-info">{{ __('table.Edit') }}</a>
 
-                            <form action="{{ route('companies.destroy', ['locale' => app()->getLocale(), 'company' => $company->id]) }}" method="POST" style="display: inline;">
-                                @method('DELETE')
-                                @csrf
+        @forelse ($companies as $index => $company)
+            <tr>
+                <th scope="row">{{ (int) $index + 1 }}</th>
+                <td>
+                    @if ($company->logo)
+                        <img src="{{ asset('storage/' . $company->logo) }}" height="100px" width="100px" alt="Company Logo">
+                    @else
+                        No logo available
+                    @endif
+                </td>
+                <td>{{ $company->name }}</td>
+                <td>{{ $company->email != '' ? $company->email : '--' }}</td>
+                <td>{{ $company->website != '' ? $company->website : '--' }}</td>
+                <td>
+                    <a href="{{ route('companies.edit', ['locale' => app()->getLocale(), 'company' => $company->id]) }}" class="btn btn-info">{{ __('table.Edit') }}</a>
 
-                                <input type="submit" value="{{ __('table.Delete') }}" class="btn btn-danger inline" onclick="return confirm('Are you sure you want to delete shop {{ $company->name }}?')">
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            @endif
+                    <form action="{{ route('companies.destroy', ['locale' => app()->getLocale(), 'company' => $company->id]) }}" method="POST" style="display: inline;">
+                        @method('DELETE')
+                        @csrf
+
+                        <input type="submit" value="{{ __('table.Delete') }}" class="btn btn-danger inline" onclick="return confirm('Are you sure you want to delete shop {{ $company->name }}?')">
+                    </form>
+                </td>
+            </tr>
+        @empty
+            <tr class="bg-white">
+                <td colspan="6">{{ __('not data found') }}</td>
+            </tr>
+        @endforelse
+
         </tbody>
     </table>
-    <div class="d-flex justify-content-between mt-5"></div>
+    <div class="d-flex justify-content-between mt-5">
+
+    </div>
 @endsection

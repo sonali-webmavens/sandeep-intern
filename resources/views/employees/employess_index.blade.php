@@ -41,6 +41,10 @@
                         </form>
                     </td>
                 </tr>
+                @empty
+                <tr class="bg-white">
+                    <td colspan="6">{{ __('not data found') }}</td>
+                </tr>
             @endforeach
         </tbody>
     </table>

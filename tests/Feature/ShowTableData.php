@@ -12,12 +12,12 @@ class ShowTableData extends TestCase
     // use RefreshDatabase, WithoutMiddleware;
 
 
-     // public function test_companies()
+    //  public function test_companies()
     // {
     //     $response = $this->get('/companies');
     //     $response->assertStatus(302);
-    //     $response = $this->get($response->headers->get('Location'));
-    //     $response->assertStatus(200);
+    //     $response->assertRedirect(url('login'));
+
     // }
     // public function test_user_login_after_add_companies()
     // {
