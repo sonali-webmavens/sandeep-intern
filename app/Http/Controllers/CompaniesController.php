@@ -81,6 +81,7 @@ class CompaniesController extends Controller
     public function update(StoreCompaniesRequest $request,  $locale, $id)
     {
         $companies = Companies::findOrFail($id);
+
         if ($request->hasFile('logo')) {
             $path = $request->file('logo')->store('logo', 'public');
         } else {
@@ -99,7 +100,7 @@ class CompaniesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $locale ,  $id)
+    public function destroy(string $locale , $id)
     {
         $companies = Companies::find($id);
         $companies->delete();

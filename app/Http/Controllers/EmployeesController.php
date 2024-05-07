@@ -76,7 +76,6 @@ class EmployeesController extends Controller
     public function update(EmployeesStoreReuest $request, $locale, $id)
     {
         $employees = Employees::findOrFail($id);
-
         $employees->update([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
@@ -87,10 +86,8 @@ class EmployeesController extends Controller
         return redirect()->route('employees.index', app()->getLocale());
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+
+    public function destroy(string $locale, $id)
     {
         $employees = Employees::findOrFail($id);
         $employees->delete();

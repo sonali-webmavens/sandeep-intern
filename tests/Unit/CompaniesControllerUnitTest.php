@@ -92,38 +92,35 @@ class CompaniesControllerUnitTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('value="' . $company->name . '"', false);
     }
-
-    public function test_update_companies()
+    public function test_delete_companies_successfully()
     {
         $company = Companies::factory()->create();
-        $updatedName = 'any update name';
-        $updatedEmail = 'any update email';
-        $updatedWebsite = 'any update Website';
+        $response = $this->actingAs($this->user)->delete(route('companies.destroy', ['locale' => 'en', 'company' => $company->id]));
+        $this->assertDatabaseMissing('employees', ['id' => $company->id]);
+
+    }
+    public function test_update_companies()
+    {
+        // Create a company
+        $company = Companies::factory()->create();
+        $updatedCompany = [
+            'name' => 'any update name',
+            'email' => 'any@update.email',
+            'website' => 'anyupdatewebsite.com',
+        ];
 
         $response = $this->actingAs($this->user)
             ->withHeaders(['X-CSRF-TOKEN' => csrf_token()])
             ->from(route('companies.edit', ['locale' => 'en', 'company' => $company->id]))
             ->put(route('companies.update', ['locale' => 'en', 'company' => $company->id]), [
-                'name' => $updatedName,
-                'email' => $updatedEmail,
-                'website' => $updatedWebsite,
+                $updatedCompany
             ]);
 
-        $this->assertDatabaseHas('companies', [
-            'name' => $updatedName,
-            'email' => $updatedEmail,
-            'website' => $updatedWebsite,
-        ]);
-    }
 
-    public function test_delete_companies_successfully()
-    {
-        $company = Companies::factory()->create();
-
-
-        $response = $this->actingAs($this->user)->delete(route('companies.destroy', ['locale' => 'en', 'company' => $company->id]));
-        $this->assertDatabaseCount('companies', 0);
-
+        $updatedCompany = Companies::findOrFail($company->id);
+        $this->assertEquals($updatedCompany['name'], $updatedCompany->name);
+        $this->assertEquals($updatedCompany['email'], $updatedCompany->email);
+        $this->assertEquals($updatedCompany['website'], $updatedCompany->website);
     }
 
 

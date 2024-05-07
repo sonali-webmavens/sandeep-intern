@@ -23,6 +23,7 @@ class EmployeesUnitTest extends TestCase
         $this->user = $this->UserCreate();
     }
 
+
     public function test_table_data_do_not_show_in_employees()
     {
         $response = $this->actingAs($this->user)->get(route('employees.index' ,['locale' =>  'en' ]));
@@ -32,18 +33,18 @@ class EmployeesUnitTest extends TestCase
 
     public function test_table_data_show_in_employees()
     {
-        // Create a company record
-        $company = Companies::create([
+        // Create a employees record
+        $employees = Companies::create([
             'name' => 'web mavens',
         ]);
 
-        // Create an employee record associated with the company
+        // Create an employee record associated with the employees
         $employees = Employees::create([
             'first_name' => 'sandip',
             'last_name' => 'sonagra',
             'email' => 'sandip@gmail.com',
             'phone' => 123456,
-            'companies_id' => $company->id, // Use the created company's ID
+            'companies_id' => $employees->id, // Use the created company's ID
         ]);
 
         // Ensure that the data is shown in the employees table
@@ -110,19 +111,50 @@ class EmployeesUnitTest extends TestCase
         $response->assertSee('value="' . $employee->first_name . '"', false);
     }
 
-    // public function test_update_time_validation_redirect_back()
+    // public function test_update_employees()
     // {
-    //     $company = Employees::factory()->create();
+    //     $emp = Employees::factory()->create();
+    //     $updatedemp = [
+    //         'first_name' => 'any name',
+    //         'email' => 'any@update.email',
+    //     ];
 
     //     $response = $this->actingAs($this->user)
-    //         ->from(route('employees.edit', ['locale' => 'en', 'company' => $company->id]))
-    //         ->put(route('employees.update', ['locale' => 'en', 'company' => $company->id]), [
-    //             'name' => '',
-    //         ]);
-    //     // $response->assertStatus(302);
-    //     $response->assertRedirect(route('employees.edit', ['locale' => 'en', 'company' => $company->id]));
-    //     // $response->assertSessionHasErrors(['name']);
+    //     ->from(route('employees.edit', ['locale' => 'en', 'employee' => $emp->id]))
+    //         ->put(route('employees.update', ['locale' => 'en', 'employee' => $emp->id]), $updatedemp);
+    //     $updatedemployees = Employees::findOrFail($emp->id);
+    //     $this->assertEquals($updatedemp['first_name'], $updatedemployees->first_name);
+    //     $this->assertEquals($updatedemp['email'], $updatedemployees->email);
     // }
+    public function test_update_emp()
+    {
+        $emp = Employees::factory()->create();
+    $updatedName = 'any update name';
+
+        $response = $this->actingAs($this->user)
+            ->from(route('employees.edit', ['locale' => 'en', 'employee' => $emp->id]))
+            ->put(route('employees.update', ['locale' => 'en', 'employee' => $emp->id]), [
+                'first_name' => $updatedName,
+            ]);
+dd($response);
+        $this->assertDatabaseHas('employees', [
+            'first_name' => $updatedName,
+        ]);
+    }
+
+
+    public function test_delete_employee()
+{
+    $this->withoutMiddleware();
+    $company = Companies::factory()->create();
+    $employee = Employees::factory()->create(['companies_id' => $company->id]);
+    $response = $this->actingAs($this->user)
+        ->delete(route('employees.destroy', ['locale' => 'en', 'employee' => $employee->id]));
+
+
+    $this->assertDatabaseMissing('employees', ['id' => $employee->id]);
+}
+
 
 
     private function UserCreate()
