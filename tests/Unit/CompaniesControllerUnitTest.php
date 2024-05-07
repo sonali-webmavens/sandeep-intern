@@ -6,13 +6,12 @@ use Tests\TestCase;
 use App\Models\Companies;
 use App\Models\User;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Foundation\Testing\WithFaker;
 
 use Illuminate\Support\Facades\Hash;
 
 class CompaniesControllerUnitTest extends TestCase
 {
-    use RefreshDatabase,WithFaker;
+    use RefreshDatabase;
     private User $user;
 
     protected function setUp(): void
@@ -94,19 +93,38 @@ class CompaniesControllerUnitTest extends TestCase
         $response->assertSee('value="' . $company->name . '"', false);
     }
 
-    // public function test_update_time_validation_redirect_back()
-    // {
-    //     $company = Companies::factory()->create();
+    public function test_update_companies()
+    {
+        $company = Companies::factory()->create();
+        $updatedName = 'any update name';
+        $updatedEmail = 'any update email';
+        $updatedWebsite = 'any update Website';
 
-    //     $response = $this->actingAs($this->user)
-    //         ->from(route('companies.edit', ['locale' => 'en', 'company' => $company->id]))
-    //         ->put(route('companies.update', ['locale' => 'en', 'company' => $company->id]), [
-    //             'name' => '',
-    //         ]);
-    //     // $response->assertStatus(302);
-    //     $response->assertRedirect(route('companies.edit', ['locale' => 'en', 'company' => $company->id]));
-    //     // $response->assertSessionHasErrors(['name']);
-    // }
+        $response = $this->actingAs($this->user)
+            ->withHeaders(['X-CSRF-TOKEN' => csrf_token()])
+            ->from(route('companies.edit', ['locale' => 'en', 'company' => $company->id]))
+            ->put(route('companies.update', ['locale' => 'en', 'company' => $company->id]), [
+                'name' => $updatedName,
+                'email' => $updatedEmail,
+                'website' => $updatedWebsite,
+            ]);
+
+        $this->assertDatabaseHas('companies', [
+            'name' => $updatedName,
+            'email' => $updatedEmail,
+            'website' => $updatedWebsite,
+        ]);
+    }
+
+    public function test_delete_companies_successfully()
+    {
+        $company = Companies::factory()->create();
+
+
+        $response = $this->actingAs($this->user)->delete(route('companies.destroy', ['locale' => 'en', 'company' => $company->id]));
+        $this->assertDatabaseCount('companies', 0);
+
+    }
 
 
     private function UserCreate()

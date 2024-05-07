@@ -21,7 +21,7 @@
         </thead>
 
         <tbody>
-            @foreach ($employees as $index => $value)
+            @forelse ($employees as $index => $value)
                 <tr>
                     <th scope="row">{{ $index + 1 }}</th>
                     <td>{{ $value->first_name }}</td>
@@ -41,11 +41,11 @@
                         </form>
                     </td>
                 </tr>
-                @empty
+            @empty
                 <tr class="bg-white">
-                    <td colspan="6">{{ __('not data found') }}</td>
+                    <td>{{ __('not data found') }}</td>
                 </tr>
-            @endforeach
+            @endforelse
         </tbody>
     </table>
 
