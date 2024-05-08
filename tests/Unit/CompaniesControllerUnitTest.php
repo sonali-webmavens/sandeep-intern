@@ -5,9 +5,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Companies;
 use App\Models\User;
-use Illuminate\Support\Facades\Session;
-
-use Illuminate\Support\Facades\Hash;
 
 class CompaniesControllerUnitTest extends TestCase
 {
@@ -23,27 +20,19 @@ class CompaniesControllerUnitTest extends TestCase
     public function test_table_data_do_not_show()
     {
         $response = $this->actingAs($this->user)->get(route('companies.index', ['locale' => 'en']));
-
         $response->assertStatus(200);
         $response->assertSee(__('not data found'));
     }
-
     public function test_table_data_show()
     {
-        $companies = Companies::create([
-            'name' => 'sandip',
-            'email' => 'sandip@gmail.com',
-            'website' => 'sandip.com',
-            'logo' => 'myphoto',
-        ]);
+        $company = Companies::factory()->create();
 
         $response = $this->actingAs($this->user)->get(route('companies.index', ['locale' => 'en']));
-
         $response->assertStatus(200);
         $response->assertDontSee(__('not data found'));
 
-        $response->assertViewHas('companies', function ($collection) use ($companies) {
-            return $collection->contains($companies);
+        $response->assertViewHas('companies', function ($collection) use ($company) {
+            return $collection->contains($company);
         });
     }
 
@@ -51,12 +40,10 @@ class CompaniesControllerUnitTest extends TestCase
     {
         $companies = Companies::factory()->count(10)->create();
         $last_companies = $companies->last();
-
         $response = $this->actingAs($this->user)->get(route('companies.index', ['locale' => 'en']));
 
         $response->assertStatus(200);
         $response->assertDontSee(__('not data found'));
-
         $response->assertViewHas('companies', function ($collection) use ($last_companies) {
             return $collection->contains($last_companies);
         });
@@ -64,12 +51,8 @@ class CompaniesControllerUnitTest extends TestCase
 
     public function test_create_companies_successfully()
     {
-        //  create companies
-        $comapnies = Companies::create([
-            'name' => 'sandip',
-            'email' => 'sandip@gmail.com',
-            'website' => 'www.sandip.com',
-        ]);
+        $comapnies = Companies::factory()->create();
+
 
         $response = $this->actingAs($this->user)->from(route('companies.create'))->post(route('companies.store'), [
             'name' => $comapnies->name,
@@ -86,7 +69,6 @@ class CompaniesControllerUnitTest extends TestCase
     public function test_edit_companies_data()
     {
         $company = Companies::factory()->create();
-
         $response = $this->actingAs($this->user)->get(route('companies.edit', ['locale' => 'en', 'company' => $company->id]));
 
         $response->assertStatus(200);
@@ -101,7 +83,6 @@ class CompaniesControllerUnitTest extends TestCase
     }
     public function test_update_companies()
     {
-        // Create a company
         $company = Companies::factory()->create();
         $updatedCompany = [
             'name' => 'any update name',
@@ -122,7 +103,6 @@ class CompaniesControllerUnitTest extends TestCase
         $this->assertEquals($updatedCompany['email'], $updatedCompany->email);
         $this->assertEquals($updatedCompany['website'], $updatedCompany->website);
     }
-
 
     private function UserCreate()
     {

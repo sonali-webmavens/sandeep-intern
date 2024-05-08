@@ -23,7 +23,6 @@ class CompaniesControllerTest extends TestCase
 
     public function test_table_data_show()
     {
-        // Create a user
         $user = User::factory()->create();
         $companies = Companies::create([
             'name' => 'sandip',
@@ -36,7 +35,6 @@ class CompaniesControllerTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertDontSee(__('not data found'));
-        // $response->assertSee('sandip');
 
         $response->assertViewHas('companies', function ($collection) use ($companies) {
             return $collection->contains($companies);

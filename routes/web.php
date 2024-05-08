@@ -9,7 +9,6 @@ Auth::routes();
 Route::group(['middleware' => ['auth'], 'prefix' => '{locale?}'], function () {
     Route::resource('/companies', CompaniesController::class);
     Route::post('/companies', [CompaniesController::class, 'store'])->name('companies.store');
-    // Route::put('/companies/{company}', 'CompaniesController@update');
 
     Route::resource('/employees', EmployeesController::class);
     Route::delete('/employees/{employee}', [EmployeesController::class, 'destroy'])->name('employees.destroy');
