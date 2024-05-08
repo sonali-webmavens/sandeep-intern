@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Companies;
 use App\Http\Requests\StoreCompaniesRequest;
-use Illuminate\Support\Facades\Notification;
-use App\Notifications\WelcomeNotification;
+
+use App\Jobs\SendWelcomeNotificationJob;
 
 class CompaniesController extends Controller
 {
@@ -15,7 +15,6 @@ class CompaniesController extends Controller
      */
     public function index(Request $request)
     {
-
         $title = __('companies.title');
         $companies = Companies::all();
 
@@ -45,9 +44,8 @@ class CompaniesController extends Controller
             'website' => $request->website,
             'logo' => $path,
         ]);
-        Notification::send($companies, new WelcomeNotification($companies));
+        SendWelcomeNotificationJob::dispatch($companies)->delay(now()->addSeconds(5));
 
-        // Check if the request expects JSON response
         if ($request->expectsJson()) {
             return response()->json($companies, 200);
         } else {
@@ -93,8 +91,7 @@ class CompaniesController extends Controller
             'website' => $request->website,
             'logo' => $path,
         ]);
-        return redirect()->route('companies.index',app()->getLocale());
-
+        return redirect()->route('companies.index', app()->getLocale());
     }
 
     /**
@@ -107,3 +104,4 @@ class CompaniesController extends Controller
         return back();
     }
 }
+
