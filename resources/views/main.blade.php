@@ -318,6 +318,27 @@
 
                                 </ul>
                             </li>
+
+                            <li class="nav-item menu">
+                                <a href="#" class="nav-link ">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        live wire
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href={{ url('/live') }}
+                                            class="nav-link active">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>  live wire</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
                             <li class="nav-item menu">
                                 <a href="#" class="nav-link ">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -372,7 +393,6 @@
                                     <form action="{{ route('logout') }}" method="POST" id="logout-form">
                                         @csrf
                                     </form>
-
                                 </ul>
                             </li>
 
@@ -441,6 +461,7 @@
                 }
             });
         </script>
+        {{-- @livewireScripts --}}
         <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 
