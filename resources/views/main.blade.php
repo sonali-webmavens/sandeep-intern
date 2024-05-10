@@ -23,7 +23,7 @@
         <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
         <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
         <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-
+        @livewireStyles
 
 
         <script nonce="a497fc58-3ddf-40e1-a2e1-c7b1a1c4ad39">
@@ -315,7 +315,6 @@
                                         </a>
                                     </li>
 
-
                                 </ul>
                             </li>
 
@@ -330,9 +329,16 @@
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
                                         <a href={{ url('/live') }}
-                                            class="nav-link active">
+                                            class="nav-link ">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>  live wire</p>
+                                            <p>  Create Customer </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href={{ route('customer.show') }}
+                                            class="nav-link ">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p> Customer Data </p>
                                         </a>
                                     </li>
 
@@ -461,14 +467,14 @@
                 }
             });
         </script>
-        {{-- @livewireScripts --}}
+
         <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 
+        @livewireScripts
 
         <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}">
-            < script src = "{{ asset('plugins/chart.js/Chart.min.js') }}" >
-        </script>
+            < script src = "{{ asset('plugins/chart.js/Chart.min.js') }}" ></script>
         <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
         <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
         <script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>

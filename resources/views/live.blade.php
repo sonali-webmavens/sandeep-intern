@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sandip Sonagra - Personal Website</title>
-    @livewireStyles
-</head>
+@extends('main')
 
-<body>
-
-        @livewire('customer');
-        @livewireScripts
-</body>
-
-</html>
+@section('content')
+    @livewire('customer-create')
+@endsection
