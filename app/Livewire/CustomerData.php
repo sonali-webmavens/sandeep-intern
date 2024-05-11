@@ -9,12 +9,6 @@ class CustomerData extends Component
 {
     public $customers = [];
     public $title;
-    protected $listeners = ['viewCustomer'];
-
-    public function viewCustomer($customerId)
-    {
-        $this->emit('customerSelected', $customerId);
-    }
 
     public function mount()
     {
@@ -22,10 +16,13 @@ class CustomerData extends Component
         $this->customers = CreateCustomer::all();
     }
 
-    // Emit an event when a customer is clicked
-    public function selectCustomer($customerId)
+    public function deleteCustomer($customerId)
     {
-        $this->emit('customerSelected', $customerId);
+        $customer = CreateCustomer::find($customerId);
+        if ($customer) {
+            $customer->delete();
+            return redirect()->route('customer.show');
+        }
     }
 
     public function render()

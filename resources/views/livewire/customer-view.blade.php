@@ -17,7 +17,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-sm-2 font-weight-bold">Email:</div>
-                    <div class="col-sm-10">john{{ $customer->email }}</div>
+                    <div class="col-sm-10">{{ $customer->email }}</div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-sm-2 font-weight-bold">Phone:</div>

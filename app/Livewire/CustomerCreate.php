@@ -28,12 +28,8 @@ class CustomerCreate extends Component
         ]);
 
         CreateCustomer::create($validatedData);
-        $this->reset(['name', 'email', 'phone']);
+        return redirect(route('customer.show'));
 
-        // Redirect to the customer/show route
     }
-
-
-    // Livewire method to redirect
 
 }

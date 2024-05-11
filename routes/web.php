@@ -4,6 +4,7 @@ use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\DashbordController;
 use App\Livewire\CustomerCreate;
+use App\Livewire\CustomerEdit;
 use App\Livewire\CustomerData;
 use App\Livewire\CustomerView;
 
@@ -13,16 +14,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/live', function () {
     return view('live');
 });
+Route::get('/editlive/{editid}', function ($editid) {
+    return view('edit_live', ['editid' => $editid]);
+})->name('customer.edit');
 
-Route::get('/customer', [CustomerCreate::class,'save'])->name('customer.create');
+Route::get('/customer', [CustomerCreate::class, 'save'])->name('customer.create');
 Route::get('/customer/show', CustomerData::class)->name('customer.show');
-Route::get('/customer/view/{customer}', CustomerView::class)->name('customer.view');
-Route::get('/customer/edit/{customer}', [CustomerView::class, 'edit'])->name('customer.edit');
-Route::delete('/customer/delete/{customer}', [CustomerView::class, 'delete'])->name('customer.delete');
-
-
-
-
+Route::get('/customer/view/{viewid}', CustomerView::class)->name('customer.view');
+// Route::get('/customer/edit/{editid}', CustomerEdit::class)->name('customer.edit');
 Auth::routes();
 
 Route::group(['middleware' => ['auth'], 'prefix' => '{locale?}'], function () {
