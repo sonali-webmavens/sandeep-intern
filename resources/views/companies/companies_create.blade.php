@@ -1,8 +1,8 @@
-@extends('welcome')
+@extends('main')
 
 @section('content')
 
-    <form action="{{ route('companies.store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('companies.store', ['locale' => app()->getLocale()]) }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="container">
             @if ($errors->any())
@@ -16,31 +16,31 @@
             @endif
             <hr>
             <div class="form-group">
-                <label for="exampleInputName">Name  :- </label>
+                <label for="exampleInputName">{{ __('companies.Name') }} :- </label>
                 <input type="text" class="form-control" id="exampleInputName"
-                    placeholder="Enter Companies Name" name="name" value="{{ old('name') }}">
+                    placeholder="{{ __('companies.Enter Companies Name') }}" name="name" value="{{ old('name') }}">
             </div>
             <br><br>
             <div class="form-group">
-                <label for="exampleInputEmail1">Email address  :-</label>
+                <label for="exampleInputEmail1">{{ __('companies.Email address') }}  :-</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Enter email" name="email" value="{{ old('email') }}">
+                    placeholder="{{ __('companies.Enter your email address') }}" name="email" value="{{ old('email') }}">
 
             </div>
             <br><br>
 
             <div class="form-group">
-                <label for="exampleInputWebsite">Website  ;-</label>
-                <input type="Website" class="form-control" id="exampleInputWebsite" placeholder="Website" name="website" value="{{ old('website') }}">
+                <label for="exampleInputWebsite">{{ __('companies.Website') }}  ;-</label>
+                <input type="Website" class="form-control" id="exampleInputWebsite" placeholder=" {{ __('companies.enter your companies Website') }}" name="website" value="{{ old('website') }}">
             </div>
             <br><br>
 
             <div class="form-group">
-                <label for="exampleFormControlFile">Companies Logo</label>
+                <label for="exampleFormControlFile">{{ __('companies.Companies Logo') }}</label>
                 <input type="file" class="form-control-file" id="exampleFormControlFile" name="logo">
             </div>
             <br><br>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">{{ __('companies.Submit') }}</button>
     </form>
     </div>
 @endsection
