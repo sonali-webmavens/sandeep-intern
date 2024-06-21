@@ -22,6 +22,7 @@
                     placeholder="{{ __('employees.Enter First Name') }}" name="first_name" value="{{ old('first_name') }}">
             </div>
             <br>
+            <br>
 
             <div class="form-group">
                 <label for="exampleInputlastName">{{ __('employees.Last Name') }}  :- </label>
@@ -29,12 +30,14 @@
                     placeholder="{{ __('employees.Enter Your last Name') }}" name="last_name" value="{{ old('last_name') }}">
             </div>
             <br>
+            <br>
 
             <div class="form-group">
                 <label for="exampleInputEmail">{{ __('employees.Email address') }}  :- </label>
                 <input type="text" class="form-control" id="exampleInputEmail"
                     placeholder="{{ __('employees.Enter your email address') }}" name="email" value="{{ old('email') }}">
             </div>
+            <br>
             <br>
 
             <div class="form-group">
