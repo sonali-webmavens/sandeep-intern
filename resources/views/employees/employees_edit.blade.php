@@ -62,5 +62,4 @@
 
             <button type="submit" class="btn btn-warning">{{ __('employees.Update')}}</button>
     </form>
-    </div>
 @endsection

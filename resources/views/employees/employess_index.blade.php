@@ -1,4 +1,5 @@
 @extends('main')
+@extends('main')
 
 @section('content')
     <div class="d-flex justify-content-end">

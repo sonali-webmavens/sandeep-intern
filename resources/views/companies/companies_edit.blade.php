@@ -44,5 +44,4 @@
 
             <button type="submit" class="btn btn-warning">{{ __('companies.Update') }}</button>
     </form>
-    </div>
 @endsection

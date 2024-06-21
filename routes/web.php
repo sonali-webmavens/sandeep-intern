@@ -11,17 +11,14 @@ use App\Livewire\CustomerView;
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/live', function () {
-    return view('live');
-});
-Route::get('/editlive/{editid}', function ($editid) {
-    return view('edit_live', ['editid' => $editid]);
-})->name('customer.edit');
 
-Route::get('/customer', [CustomerCreate::class, 'save'])->name('customer.create');
-Route::get('/customer/show', CustomerData::class)->name('customer.show');
-Route::get('/customer/view/{viewid}', CustomerView::class)->name('customer.view');
-// Route::get('/customer/edit/{editid}', CustomerEdit::class)->name('customer.edit');
+Route::resource('/', DashbordController::class)->names([
+    'index'=> '/.index',
+    'create'=> '/.create',
+]);
+
+
+
 Auth::routes();
 
 Route::group(['middleware' => ['auth'], 'prefix' => '{locale?}'], function () {

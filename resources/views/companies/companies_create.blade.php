@@ -20,20 +20,20 @@
                 <input type="text" class="form-control" id="exampleInputName"
                     placeholder="{{ __('companies.Enter Companies Name') }}" name="name" value="{{ old('name') }}">
             </div>
-            <br><br>
+            <br>
             <div class="form-group">
                 <label for="exampleInputEmail1">{{ __('companies.Email address') }}  :-</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                     placeholder="{{ __('companies.Enter your email address') }}" name="email" value="{{ old('email') }}">
 
             </div>
-            <br><br>
+            <br>
 
             <div class="form-group">
                 <label for="exampleInputWebsite">{{ __('companies.Website') }}  ;-</label>
                 <input type="Website" class="form-control" id="exampleInputWebsite" placeholder=" {{ __('companies.enter your companies Website') }}" name="website" value="{{ old('website') }}">
             </div>
-            <br><br>
+            <br>
 
             <div class="form-group">
                 <label for="exampleFormControlFile">{{ __('companies.Companies Logo') }}</label>
@@ -42,5 +42,4 @@
             <br><br>
             <button type="submit" class="btn btn-primary">{{ __('companies.Submit') }}</button>
     </form>
-    </div>
 @endsection
