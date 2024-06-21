@@ -23,6 +23,8 @@
         <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
         <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
         <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        @livewireStyles
+        @livewireScripts
 
 
 
@@ -315,9 +317,36 @@
                                         </a>
                                     </li>
 
+                                </ul>
+                            </li>
+
+                            <li class="nav-item menu">
+                                <a href="#" class="nav-link ">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        live wire
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href={{ url('/live') }}
+                                            class="nav-link ">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>  Create Customer </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href={{ route('customer.show') }}
+                                            class="nav-link ">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p> Customer Data </p>
+                                        </a>
+                                    </li>
 
                                 </ul>
                             </li>
+
                             <li class="nav-item menu">
                                 <a href="#" class="nav-link ">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -372,7 +401,6 @@
                                     <form action="{{ route('logout') }}" method="POST" id="logout-form">
                                         @csrf
                                     </form>
-
                                 </ul>
                             </li>
 
@@ -441,13 +469,13 @@
                 }
             });
         </script>
+
         <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 
 
         <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}">
-            < script src = "{{ asset('plugins/chart.js/Chart.min.js') }}" >
-        </script>
+            < script src = "{{ asset('plugins/chart.js/Chart.min.js') }}" ></script>
         <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
         <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
         <script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
